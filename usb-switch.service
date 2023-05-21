@@ -1,0 +1,14 @@
+[Unit]
+Description=Daemon for the USB switch.
+After=network.target
+
+[Service]
+ExecStart=python switch_daemon_main.py --log_dir=/home/lkary/var/log
+WorkingDirectory=/home/lkary/src/usb-switch/
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=lkary
+
+[Install]
+WantedBy=multi-user.target
