@@ -23,7 +23,7 @@ _PANEL_BUTTON_MAP = {
   6: PanelButton(6, 0, 3, 'blue'),
 }
 
-USB_HUB_LED_PINS = [4, 22, 17, 27]
+USB_HUB_LED_PINS = [4, 22, 15, 27]
 USB_HUB_BUTTON_PIN = 10
 MAX_ATTEMPTS = 3
 
