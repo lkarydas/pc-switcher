@@ -8,6 +8,8 @@ from absl import app
 from absl import flags
 from absl import logging
 
+import hdmi_hub
+
 FLAGS = flags.FLAGS
 
 @dataclasses.dataclass
@@ -16,11 +18,12 @@ class PanelButton:
   led_pin: int
   usb_position: int
   computer_name: str
+  hdmi_position: int
 
 _PANEL_BUTTON_MAP = {
-  13: PanelButton(13, 0, 1, 'red'),
-  5: PanelButton(5, 0, 2, 'white'),
-  6: PanelButton(6, 0, 3, 'blue'),
+  13: PanelButton(13, 0, 1, 'red', 1),
+  5: PanelButton(5, 0, 2, 'white', 2),
+  6: PanelButton(6, 0, 3, 'blue', 0),
 }
 
 USB_HUB_LED_PINS = [4, 22, 15, 27]
@@ -41,6 +44,10 @@ class PanelController:
                                                  panel_button.computer_name))
     logging.info(f'Switching to {panel_button.usb_position}')
     self.switch_to(panel_button.usb_position)
+    hdmi_position = panel_button.hdmi_position
+    logging.info('hdmi_position: %i', hdmi_position)
+    if hdmi_position > 0:
+      hdmi_hub.switch_to(hdmi_position)
 
   def register_button_callbacks(self):
     b1 = gpiozero.Button(5)
