@@ -14,7 +14,7 @@ IR_COMMAND_MAP = {
 
 def switch_to(hdmi_position):
   ir_command = IR_COMMAND_MAP[hdmi_position]
-  logging.info('Sending IR command: %s', ir_command)
+  logging.info('Switching HDMI hub to position %s.', hdmi_position)
   command = ['ir-ctl', '-S', ir_command]
   logging.info('Running command: %s', ' '.join(command))
   subprocess.run(command)
