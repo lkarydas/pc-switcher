@@ -5,7 +5,7 @@ import time
 
 from absl import logging
 
-DDCUTIL_BIN = 'C:\Program Files (x86)\winddcutil\winddcutil.exe'
+DDCUTIL_BIN = r'C:\Program Files (x86)\winddcutil\winddcutil.exe'
 GET_VCP_INPUT_CODES = {
   '1': 'HDMI',
   '4': 'DP2',
