@@ -143,7 +143,8 @@ def main(argv):
   logging.info('Main loop.')
   controller = PanelController()
   controller.register_button_callbacks()
-  signal.pause()
+  # Signal pause only works on Linux.
+  signal.pause()  # pylint: disable=no-member
 
 
 if __name__ == '__main__':
