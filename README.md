@@ -1,5 +1,6 @@
-# usb-switch
-Upgrades to the StarTech USB switch.
+# Desk Panel
+
+![Photos of the front panel siting on the desk.](doc/images/panel_banner.png)
 
 ## Install as a service
 
