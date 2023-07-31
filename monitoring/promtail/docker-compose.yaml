@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+
+  promtail:
+    image: grafana/promtail:2.8.3
+    volumes:
+      - ./promtail.yaml:/etc/promtail/docker-config.yaml
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/log:/var/log
+      - ~/var/log:/usb-switch-daemon-logs/:ro
+    command: -config.file=/etc/promtail/config.yml -print-config-stderr

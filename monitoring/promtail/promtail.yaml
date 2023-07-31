@@ -1,0 +1,12 @@
+clients:
+  - url: http://192.168.1.168:3100/loki/api/v1/push
+
+scrape_configs:
+- job_name: py_switch_daemon
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: py_switch_daemon
+      host: usb-switch-pi
+      __path__: /usb-switch-daemon-logs/py_switch_daemon_main*
