@@ -14,7 +14,8 @@ SET_VCP_INPUT_CODES = {
   'HDMI': '1',
   'DP2': '10',
 }
-MAX_RETRIES = 2
+MAX_RETRIES = 3
+TIME_BETWEEN_RETRIES_SECONDS = 1
 
 def switch_monitor_input(tcp_message):
   """Switch monitor input."""
@@ -28,10 +29,11 @@ def switch_monitor_input(tcp_message):
         break
       logging.info('Error.')
       if retry_counter <= MAX_RETRIES:
-        time.sleep(0.5)
-        logging.info('Retrying.')
+        time.sleep(TIME_BETWEEN_RETRIES_SECONDS)
+        logging.info('Retrying. Attempt %i of %i', retry_counter, MAX_RETRIES)
       else:
         logging.info('Max retries reached.')
+        break
   else:
     logging.info('Received unknown message: %s', tcp_message)
 
