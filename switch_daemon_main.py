@@ -78,12 +78,13 @@ class PanelController:
     hdmi_hub.switch_to(2)  # So that C730 can send the DDC command.
     time.sleep(2)  # To give time for the HDMI swicth.
     if panel_button.computer_name == 'MSI':
-      logging.info('Sending UDP command to switch monitor input to DP2.')
+      logging.info('Sending TCP command to switch monitor input to DP2.')
       tcp_client.send_message('DP2')
     else:
-      logging.info('Sending UDP command to switch monitor input to HDMI.')
+      logging.info('Sending TCP command to switch monitor input to HDMI.')
       tcp_client.send_message('HDMI')
-    hdmi_hub.switch_to(hdmi_position)
+    if hdmi_position != 2:
+      hdmi_hub.switch_to(hdmi_position)
 
   def turn_off_all_button_leds(self):
     """Turn off all LEDS on the panel buttons."""
