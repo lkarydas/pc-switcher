@@ -61,30 +61,6 @@ class PanelController:
             19: gpiozero.LED(12, active_high=False),
         }
 
-  def button_callback(self, button):
-    """Callback fn for panel button press."""
-    panel_button = _PANEL_BUTTON_MAP[button.pin.number]
-    print('')
-    logging.info(
-        'Button pressed! Pin: %s Switching to %s.',
-        panel_button.pin,
-        panel_button.computer_name)
-    self.turn_off_all_button_leds()
-    self.button_leds[button.pin.number].on()
-    logging.info(f'Switching USB hub to position {panel_button.usb_position}.')
-    self.switch_to(panel_button.usb_position)
-    hdmi_position = panel_button.hdmi_position
-    logging.info('hdmi_position: %i', hdmi_position)
-    hdmi_hub.switch_to(2)  # So that C730 can send the DDC command.
-    time.sleep(2)  # To give time for the HDMI swicth.
-    if panel_button.computer_name == 'MSI':
-      logging.info('Sending TCP command to switch monitor input to DP2.')
-      tcp_client.send_message('DP2')
-    else:
-      logging.info('Sending TCP command to switch monitor input to HDMI.')
-      tcp_client.send_message('HDMI')
-    if hdmi_position != 2:
-      hdmi_hub.switch_to(hdmi_position)
     def button_callback(self, button):
         """Callback fn for panel button press."""
         panel_button = _PANEL_BUTTON_MAP[button.pin.number]
@@ -127,35 +103,9 @@ class PanelController:
         button_3.when_pressed = self.button_callback
         button_4.when_pressed = self.button_callback
 
-  def press_hub_button(self):
-    """Simulate a button press to the USB switch (advances to next input)."""
-    self.hub_button.on()
-    time.sleep(0.1)
-    self.hub_button.off()
-
-  def switch_to(self, position):
-    """Switch USB switch to a specific position."""
-    current_position = self.get_current_position()
-    while current_position != position:
-      self.press_hub_button()
-      time.sleep(0.1)
-      current_position = self.get_current_position()
-
-  def get_current_position(self):
-    """Returns the current position of the USB switch."""
-    led_values = self.read_led_values()
-    if not led_values:
-      logging.error('Error - led values is: %s', led_values)
-      return 0
-    current_position = led_values.index(1) + 1
-    return current_position
-
-  def read_led_values(self):
-    """Read the LED values from USB switch and return them."""
-    for _ in range(0, MAX_ATTEMPTS):
-      led_values = list(
-          [device.value for device in self.hub_led_input_devices])
-      if sum(led_values) != 1:
+    def press_hub_button(self):
+        """Simulate a button press to the USB switch (advances to next input)."""
+        self.hub_button.on()
         time.sleep(0.1)
         self.hub_button.off()
 
