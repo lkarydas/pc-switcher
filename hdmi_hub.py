@@ -14,10 +14,11 @@ IR_COMMAND_MAP = {
     4: 'nec:0x800d',
 }
 
+
 def switch_to(hdmi_position):
-  """Send IR command to HDMI switch to change input."""
-  ir_command = IR_COMMAND_MAP[hdmi_position]
-  logging.info('Switching HDMI hub to position %s.', hdmi_position)
-  command = ['ir-ctl', '-S', ir_command]
-  logging.info('Running command: %s', ' '.join(command))
-  subprocess.run(command, check=False)
+    """Send IR command to HDMI switch to change input."""
+    ir_command = IR_COMMAND_MAP[hdmi_position]
+    logging.info('Switching HDMI hub to position %s.', hdmi_position)
+    command = ['ir-ctl', '-S', ir_command]
+    logging.info('Running command: %s', ' '.join(command))
+    subprocess.run(command, check=False)
