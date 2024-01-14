@@ -117,7 +117,14 @@ class PanelController:
             time.sleep(0.1)
             current_position = self.get_current_position()
 
-
+    def get_current_position(self):
+        """Returns the current position of the USB switch."""
+        led_values = self.read_led_values()
+        if not led_values:
+            logging.error('Error - led values is: %s', led_values)
+            return 0
+        current_position = led_values.index(1) + 1
+        return current_position
 
     def read_led_values(self):
         """Read the LED values from USB switch and return them."""
