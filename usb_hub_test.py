@@ -7,9 +7,13 @@ controller = usb_hub.USBHubController()
 
 position = controller.get_current_position()
 print(f'Initial position: {position}')
-print(f'This will switch to positions 1, 2, 3, 4 and then back to f{position}.')
-print('Test starts in 3 seconds, go look at the USB hub.')
-time.sleep(3)
+print(f'This will switch to positions 1, 2, 3, 4 and then back to {position}.')
+
+print('Test starts in 8 seconds, go look at the USB hub.')
+for i in range(8, 0, -1):
+  print(f'{i}...')
+  time.sleep(1)
+
 print('Switching to position 1.')
 controller.switch_to(1)
 time.sleep(1)
