@@ -21,3 +21,16 @@ sudo systemctl start usb-switch.service
 sudo systemctl stop usb-switch.service
 sudo systemctl disable usb-switch.service
 ```
+
+## Debugging
+
+### USB Hub
+
+Run the manual test:
+
+```
+sudo systemctl stop usb-switch.service
+python usb_hub_test.py
+```
+
+This will cycle through the 4 positions and return to the initial position.
