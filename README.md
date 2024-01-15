@@ -47,3 +47,14 @@ sudo systemctl stop usb-switch.service
 cd ~/src/usb-switch/
 python panel_button_leds_test.py
 ```
+
+### Check Panel Button Presses
+
+Run the manual test:
+
+```
+sudo systemctl stop usb-switch.service
+
+cd ~/src/usb-switch/
+python panel_buttons_test.py
+```
