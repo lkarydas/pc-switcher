@@ -25,7 +25,7 @@ import pi_header_pinout
 
 FLAGS = flags.FLAGS
 
-BUTTON_TO_COMPUTER_MAP = pi_header_pinout.BUTTON_GPIO_PIN_TO_COMPUTER_CONFIG_MAP
+COMPUTER_CONFIGS = pi_header_pinout.COMPUTER_CONFIGS
 
 class ComputerSelector:
     """Controls what happens when panel buttons are pressed."""
@@ -33,26 +33,35 @@ class ComputerSelector:
     def __init__(self):
         self.usb_hub_controller = usb_hub.USBHubController()
         self.panel_button_leds_controller = PanelButtonLEDsController()
+    #     self._initilize_leds()
+
+    # def _initilize_leds(self):
+    #     usb_position = self.usb_hub_controller.get_current_position()
+    #     corresponding_button_number = 0
+    #     # for config in BUTTON_TO_COMPUTER_MAP.values():
+    #     #     if config.usb_position == 
+            
+
 
     def button_callback(self, button):
         """Callback fn for panel button press."""
-        button_pin = button.pin.number
-        panel_button = BUTTON_TO_COMPUTER_MAP[button_pin]
+        index = pi_header_pinout.BUTTON_LED_GPIO_PINS.index(button.pin.number)
+        computer_config = pi_header_pinout.COMPUTER_CONFIGS[index]
         print('')
         logging.info(
-            'Button pressed! Pin: %s Switching to %s.',
-            button_pin,
-            panel_button.computer_name)
+            'Button pressed! Button: %s Switching to %s.',
+            index,
+            computer_config.computer_name)
         self.panel_button_leds_controller.turn_off_all_leds()
-        self.panel_button_leds_controller.turn_on_led(button.pin.number)
+        self.panel_button_leds_controller.turn_on_led(index)
         logging.info(
-            f'Switching USB hub to position {panel_button.usb_position}.')
-        self.usb_hub_controller.switch_to(panel_button.usb_position)
-        hdmi_position = panel_button.hdmi_position
+            f'Switching USB hub to position {computer_config.usb_position}.')
+        self.usb_hub_controller.switch_to(computer_config.usb_position)
+        hdmi_position = computer_config.hdmi_position
         logging.info('hdmi_position: %i', hdmi_position)
         hdmi_hub.switch_to(2)  # So that C730 can send the DDC command.
         time.sleep(2)  # To give time for the HDMI swicth.
-        if panel_button.computer_name == 'MSI':
+        if computer_config.computer_name == 'MSI':
             logging.info('Sending UDP command to switch monitor input to DP2.')
             tcp_client.send_message('DP2')
         else:
@@ -63,10 +72,10 @@ class ComputerSelector:
 
     def register_button_callbacks(self):
         """Register callbacks for panel buttons."""
-        button_1 = gpiozero.Button(pi_header_pinout.BUTTON_1_GPIO_PIN)
-        button_2 = gpiozero.Button(pi_header_pinout.BUTTON_2_GPIO_PIN)
-        button_3 = gpiozero.Button(pi_header_pinout.BUTTON_3_GPIO_PIN)
-        button_4 = gpiozero.Button(pi_header_pinout.BUTTON_4_GPIO_PIN)
+        button_1 = gpiozero.Button(pi_header_pinout.BUTTON_GPIO_PINS[0])
+        button_2 = gpiozero.Button(pi_header_pinout.BUTTON_GPIO_PINS[1])
+        button_3 = gpiozero.Button(pi_header_pinout.BUTTON_GPIO_PINS[2])
+        button_4 = gpiozero.Button(pi_header_pinout.BUTTON_GPIO_PINS[3])
         button_1.when_pressed = self.button_callback
         button_2.when_pressed = self.button_callback
         button_3.when_pressed = self.button_callback

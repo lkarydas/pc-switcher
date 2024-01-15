@@ -4,14 +4,8 @@ import gpiozero
 
 import pi_header_pinout
 
-BUTTON_1_PIN = pi_header_pinout.BUTTON_1_GPIO_PIN
-BUTTON_2_PIN = pi_header_pinout.BUTTON_2_GPIO_PIN
-BUTTON_3_PIN = pi_header_pinout.BUTTON_3_GPIO_PIN
-BUTTON_4_PIN = pi_header_pinout.BUTTON_4_GPIO_PIN
-LED_1_PIN = pi_header_pinout.BUTTON_1_LED_GPIO_PIN
-LED_2_PIN = pi_header_pinout.BUTTON_2_LED_GPIO_PIN
-LED_3_PIN = pi_header_pinout.BUTTON_3_LED_GPIO_PIN
-LED_4_PIN = pi_header_pinout.BUTTON_4_LED_GPIO_PIN
+BUTTON_PINS = pi_header_pinout.BUTTON_GPIO_PINS
+LED_PINS = pi_header_pinout.BUTTON_LED_GPIO_PINS
 
 
 class PanelButtonLEDsController:
@@ -19,27 +13,27 @@ class PanelButtonLEDsController:
 
     def __init__(self):
         # Maps button pins to corresponding LED pins.
-        self.leds = {
-            BUTTON_1_PIN: gpiozero.LED(LED_1_PIN, active_high=False),
-            BUTTON_2_PIN: gpiozero.LED(LED_2_PIN),
-            BUTTON_3_PIN: gpiozero.LED(LED_3_PIN),
-            BUTTON_4_PIN: gpiozero.LED(LED_4_PIN)
-        }
+        self.leds = [
+            gpiozero.LED(LED_PINS[0], active_high=False),  # RGB LED.
+            gpiozero.LED(LED_PINS[1]),
+            gpiozero.LED(LED_PINS[2]),
+            gpiozero.LED(LED_PINS[3])
+        ]
 
-    def turn_on_led(self, button_pin: int):
-        """Turn on the LED corresponding to the given button pin number."""
-        self.leds[button_pin].on()
+    def turn_on_led(self, led_index: int):
+        """Turn on a LED."""
+        self.leds[led_index].on()
 
-    def turn_off_led(self, button_pin: int):
-        """Turn off the LED corresponding to the given button pin number."""
-        self.leds[button_pin].off()
+    def turn_off_led(self, led_index: int):
+        """Turn off a LED."""
+        self.leds[led_index].off()
 
     def turn_off_all_leds(self):
-        """Turn off all LEDS on the panel buttons."""
-        for _, led in self.leds.items():
+        """Turn off all LEDS."""
+        for led in self.leds:
             led.off()
 
     def turn_on_all_leds(self):
-        """Turn on all LEDS on the panel buttons."""
-        for _, led in self.leds.items():
+        """Turn on all LEDS."""
+        for _, led in self.leds:
             led.on()

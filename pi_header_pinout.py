@@ -7,19 +7,22 @@ https://docs.google.com/drawings/d/1v56Ztgi_ypiBD4tRo_7iUOf9xP8JAnZEOGvu_qgjYyM
 import dataclasses
 
 # Pins connected to panel buttons and their LEDs.
-# The numbers 1, 2, 3, 4 go from left to right (as you see the panel).
+# The order goes from left to right (as you see the buttons on the panel).
 
-BUTTON_1_GPIO_PIN = 19 # UM350.
-BUTTON_1_LED_GPIO_PIN = 12
+BUTTON_GPIO_PINS = [19, 6, 13, 5]
+BUTTON_LED_GPIO_PINS = [12, 16, 21, 20]
 
-BUTTON_2_GPIO_PIN = 6  # MSI.
-BUTTON_2_LED_GPIO_PIN = 16
+# BUTTON_1_GPIO_PIN = 19 # UM350.
+# BUTTON_1_LED_GPIO_PIN = 12
 
-BUTTON_3_GPIO_PIN = 13 # Dock.
-BUTTON_3_LED_GPIO_PIN = 21
+# BUTTON_2_GPIO_PIN = 6  # MSI.
+# BUTTON_2_LED_GPIO_PIN = 16
 
-BUTTON_4_GPIO_PIN = 5  # Lenovo.
-BUTTON_4_LED_GPIO_PIN = 20
+# BUTTON_3_GPIO_PIN = 13 # Dock.
+# BUTTON_3_LED_GPIO_PIN = 21
+
+# BUTTON_4_GPIO_PIN = 5  # Lenovo.
+# BUTTON_4_LED_GPIO_PIN = 20
 
 # Pins connected to the Startech USB switch.
 
@@ -38,9 +41,9 @@ class ComputerConfig:
     hdmi_position: int
 
 
-BUTTON_GPIO_PIN_TO_COMPUTER_CONFIG_MAP = {
-    BUTTON_1_GPIO_PIN: ComputerConfig('UM350', 4, 4),
-    BUTTON_2_GPIO_PIN: ComputerConfig('MSI', 3, 2),
-    BUTTON_3_GPIO_PIN: ComputerConfig('Dock', 1, 1),
-    BUTTON_4_GPIO_PIN: ComputerConfig('Lenovo', 2, 2),
-}
+COMPUTER_CONFIGS = [
+    ComputerConfig('UM350', 4, 4),
+    ComputerConfig('MSI', 3, 2),
+    ComputerConfig('Dock', 1, 1),
+    ComputerConfig('Lenovo', 2, 2),
+]
