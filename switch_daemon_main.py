@@ -19,6 +19,7 @@ from absl import flags
 from absl import logging
 
 import hdmi_hub
+from panel_button_leds import PanelButtonLEDsController
 import tcp_client
 import usb_hub
 
@@ -48,12 +49,7 @@ class PanelController:
 
     def __init__(self):
         self.usb_hub_controller = usb_hub.USBHubController()
-        self.button_leds = {
-            5: gpiozero.LED(20),
-            6: gpiozero.LED(16),
-            13: gpiozero.LED(21),
-            19: gpiozero.LED(12, active_high=False),
-        }
+        self.panel_button_leds_controller = PanelButtonLEDsController()
 
     def button_callback(self, button):
         """Callback fn for panel button press."""
@@ -63,8 +59,8 @@ class PanelController:
             'Button pressed! Pin: %s Switching to %s.',
             panel_button.pin,
             panel_button.computer_name)
-        self.turn_off_all_button_leds()
-        self.button_leds[button.pin.number].on()
+        self.panel_button_leds_controller.turn_off_all_button_leds()
+        self.panel_button_leds_controller.turn_on_led(button.pin.number)
         logging.info(
             f'Switching USB hub to position {panel_button.usb_position}.')
         self.usb_hub_controller.switch_to(panel_button.usb_position)
@@ -80,11 +76,6 @@ class PanelController:
                 'Sending UDP command to switch monitor input to HDMI.')
             tcp_client.send_message('HDMI')
         hdmi_hub.switch_to(hdmi_position)
-
-    def turn_off_all_button_leds(self):
-        """Turn off all LEDS on the panel buttons."""
-        for _, led in self.button_leds.items():
-            led.off()
 
     def register_button_callbacks(self):
         """Register callbacks for panel buttons."""
