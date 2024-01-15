@@ -51,11 +51,12 @@ class ComputerSelector:
 
     def button_callback(self, button):
         """Callback fn for panel button press."""
-        panel_button = _PANEL_BUTTON_MAP[button.pin.number]
+        button_pin = button.pin.number
+        panel_button = _PANEL_BUTTON_MAP[button_pin]
         print('')
         logging.info(
             'Button pressed! Pin: %s Switching to %s.',
-            panel_button.pin,
+            button_pin,
             panel_button.computer_name)
         self.panel_button_leds_controller.turn_off_all_leds()
         self.panel_button_leds_controller.turn_on_led(button.pin.number)
