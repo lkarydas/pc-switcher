@@ -22,6 +22,7 @@ import hdmi_hub
 from panel_button_leds import PanelButtonLEDsController
 import tcp_client
 import usb_hub
+import pi_header_pinout
 
 FLAGS = flags.FLAGS
 
@@ -79,10 +80,10 @@ class PanelController:
 
     def register_button_callbacks(self):
         """Register callbacks for panel buttons."""
-        button_1 = gpiozero.Button(5)
-        button_2 = gpiozero.Button(6)
-        button_3 = gpiozero.Button(13)
-        button_4 = gpiozero.Button(19)
+        button_1 = gpiozero.Button(pi_header_pinout.BUTTON_1_GPIO_PIN)
+        button_2 = gpiozero.Button(pi_header_pinout.BUTTON_2_GPIO_PIN)
+        button_3 = gpiozero.Button(pi_header_pinout.BUTTON_3_GPIO_PIN)
+        button_4 = gpiozero.Button(pi_header_pinout.BUTTON_4_GPIO_PIN)
         button_1.when_pressed = self.button_callback
         button_2.when_pressed = self.button_callback
         button_3.when_pressed = self.button_callback
