@@ -47,7 +47,7 @@ class ComputerSelector:
         logging.info('Corresponding index: %i', current_index)
         # Flash all LEDs for show.
         self.panel_button_leds_controller.turn_on_all_leds()
-        time.sleep(0.2)
+        time.sleep(0.3)
         led_indices_to_turn_off = [0, 1, 2, 3]
         led_indices_to_turn_off.remove(current_index)
         logging.info('led_indices_to_turn_off: %s', led_indices_to_turn_off)
