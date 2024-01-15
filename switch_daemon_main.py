@@ -31,7 +31,6 @@ FLAGS = flags.FLAGS
 class PanelButton:
     """Data class that represents a panel button."""
     pin: int
-    led_pin: int
     usb_position: int
     computer_name: str
     button_color: str
@@ -39,10 +38,10 @@ class PanelButton:
 
 
 _PANEL_BUTTON_MAP = {
-    13: PanelButton(13, 0, 1, 'Dock', 'white', 1),
-    5: PanelButton(5, 0, 2, 'Lenovo', 'red', 2),
-    6: PanelButton(6, 0, 3, 'MSI', 'blue', 2),
-    19: PanelButton(19, 0, 4, 'UM350', 'RGB', 4),
+    13: PanelButton(13, 1, 'Dock', 'white', 1),
+    5: PanelButton(5, 2, 'Lenovo', 'red', 2),
+    6: PanelButton(6, 3, 'MSI', 'blue', 2),
+    19: PanelButton(19, 4, 'UM350', 'RGB', 4),
 }
 
 class PanelController:
