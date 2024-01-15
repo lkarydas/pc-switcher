@@ -28,20 +28,18 @@ FLAGS = flags.FLAGS
 
 
 @dataclasses.dataclass
-class PanelButton:
-    """Data class that represents a panel button."""
-    pin: int
-    usb_position: int
+class ComputerConfig:
+    """Data class that represents a computer configuration."""
     computer_name: str
-    button_color: str
+    usb_position: int
     hdmi_position: int
 
 
 _PANEL_BUTTON_MAP = {
-    13: PanelButton(13, 1, 'Dock', 'white', 1),
-    5: PanelButton(5, 2, 'Lenovo', 'red', 2),
-    6: PanelButton(6, 3, 'MSI', 'blue', 2),
-    19: PanelButton(19, 4, 'UM350', 'RGB', 4),
+    13: ComputerConfig('Dock', 1, 1),
+    5: ComputerConfig('Lenovo', 2, 2),
+    6: ComputerConfig('MSI', 3, 2),
+    19: ComputerConfig('UM350', 4, 4),
 }
 
 class ComputerSelector:
