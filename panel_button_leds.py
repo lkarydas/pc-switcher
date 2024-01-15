@@ -20,10 +20,10 @@ class PanelButtonLEDsController:
     def __init__(self):
         # Maps button pins to corresponding LED pins.
         self.leds = {
-            BUTTON_1_PIN: gpiozero.LED(LED_1_PIN),
+            BUTTON_1_PIN: gpiozero.LED(LED_1_PIN, active_high=False),
             BUTTON_2_PIN: gpiozero.LED(LED_2_PIN),
             BUTTON_3_PIN: gpiozero.LED(LED_3_PIN),
-            BUTTON_4_PIN: gpiozero.LED(LED_4_PIN, active_high=False)
+            BUTTON_4_PIN: gpiozero.LED(LED_4_PIN)
         }
 
     def turn_on_led(self, button_pin: int):
