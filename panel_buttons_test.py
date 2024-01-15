@@ -12,7 +12,7 @@ import pi_header_pinout
 
 def button_callback(button):
     """Callback fn for panel button press."""
-    print('Pressed button {button.pin.number}.')
+    print(f'Pressed button {button.pin.number}.')
 
 def register_button_callbacks():
     """Register callbacks for panel buttons."""
