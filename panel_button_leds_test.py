@@ -21,4 +21,5 @@ for i in range(4):
     controller.turn_on_led(BUTTON_PINS[i])
     time.sleep(1)
     controller.turn_off_led(BUTTON_PINS[i])
+    time.sleep(0.5)
 print('Done.')
