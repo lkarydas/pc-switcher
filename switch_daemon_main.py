@@ -60,7 +60,7 @@ class PanelController:
             'Button pressed! Pin: %s Switching to %s.',
             panel_button.pin,
             panel_button.computer_name)
-        self.panel_button_leds_controller.turn_off_all_button_leds()
+        self.panel_button_leds_controller.turn_off_all_leds()
         self.panel_button_leds_controller.turn_on_led(button.pin.number)
         logging.info(
             f'Switching USB hub to position {panel_button.usb_position}.')

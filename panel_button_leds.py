@@ -1,5 +1,7 @@
 """Control the LEDs on the panel buttons."""
 
+import time
+
 import gpiozero
 
 import pi_header_pinout
@@ -34,12 +36,13 @@ class PanelButtonLEDsController:
         """Turn off the LED corresponding to the given button pin number."""
         self.leds[button_pin].off()
 
-    def turn_off_all_button_leds(self):
+    def turn_off_all_leds(self):
         """Turn off all LEDS on the panel buttons."""
         for _, led in self.leds.items():
             led.off()
 
-    def turn_on_all_button_leds(self):
+    def turn_on_all_leds(self):
         """Turn on all LEDS on the panel buttons."""
         for _, led in self.leds.items():
             led.on()
+
