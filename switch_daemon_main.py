@@ -52,8 +52,7 @@ class ComputerSelector:
         led_indices_to_turn_off.remove(current_index)
         logging.info('led_indices_to_turn_off: %s', led_indices_to_turn_off)
         for i in led_indices_to_turn_off:
-            self.panel_button_leds_controller.turn_off_led(
-                led_indices_to_turn_off)
+            self.panel_button_leds_controller.turn_off_led(i)
 
     def button_callback(self, button):
         """Callback fn for panel button press."""
