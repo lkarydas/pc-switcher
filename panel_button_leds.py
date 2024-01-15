@@ -38,3 +38,8 @@ class PanelButtonLEDsController:
         """Turn off all LEDS on the panel buttons."""
         for _, led in self.leds.items():
             led.off()
+
+    def turn_on_all_button_leds(self):
+        """Turn on all LEDS on the panel buttons."""
+        for _, led in self.leds.items():
+            led.on()

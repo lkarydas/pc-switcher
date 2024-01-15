@@ -17,6 +17,10 @@ controller = panel_button_leds.PanelButtonLEDsController()
 print('This will flash all LEDs and then turn on and off sequentially.')
 
 for i in range(4):
+    controller.turn_on_all_button_leds()
+    time.sleep(0.1)
+    controller.turn_off_all_button_leds()
+    time.sleep(0.5)
     print(f'Turning on LED {i + 1}.')
     controller.turn_on_led(BUTTON_PINS[i])
     time.sleep(0.6)
