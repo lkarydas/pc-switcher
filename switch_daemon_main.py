@@ -44,7 +44,7 @@ _PANEL_BUTTON_MAP = {
     19: PanelButton(19, 4, 'UM350', 'RGB', 4),
 }
 
-class PanelController:
+class ComputerSelector:
     """Controls what happens when panel buttons are pressed."""
 
     def __init__(self):
@@ -95,7 +95,7 @@ def main(argv):
     logging.set_verbosity(logging.INFO)
     logging.get_absl_handler().use_absl_log_file()
     logging.info('Main loop.')
-    controller = PanelController()
+    controller = ComputerSelector()
     controller.register_button_callbacks()
     # Signal pause only works on Linux.
     signal.pause()  # pylint: disable=no-member
