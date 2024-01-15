@@ -45,7 +45,7 @@ class ComputerSelector:
 
     def button_callback(self, button):
         """Callback fn for panel button press."""
-        index = pi_header_pinout.BUTTON_LED_GPIO_PINS.index(button.pin.number)
+        index = pi_header_pinout.BUTTON_GPIO_PINS.index(button.pin.number)
         computer_config = pi_header_pinout.COMPUTER_CONFIGS[index]
         print('')
         logging.info(
