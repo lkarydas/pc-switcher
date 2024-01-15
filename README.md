@@ -30,7 +30,20 @@ Run the manual test:
 
 ```
 sudo systemctl stop usb-switch.service
+
+cd ~/src/usb-switch/
 python usb_hub_test.py
 ```
 
 This will cycle through the 4 positions and return to the initial position.
+
+### Panel Button LEDs
+
+Run the manual test:
+
+```
+sudo systemctl stop usb-switch.service
+
+cd ~/src/usb-switch/
+python panel_button_leds_test.py
+```
