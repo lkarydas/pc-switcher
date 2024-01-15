@@ -1,1 +1,1 @@
-python D:\src\usb-switch\tcp_server.py
+python D:\src\pc-switcher\tcp_server.py

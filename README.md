@@ -1,25 +1,25 @@
-# Desk Panel
+# PC Switcher
 
 ![Photos of the front panel siting on the desk.](doc/images/panel_banner.png)
 
 ## Install as a service
 
 ```
-sudo ln -s /home/lkary/src/usb-switch/usb-switch.service /lib/systemd/system/usb-switch.service
+sudo ln -s /home/lkary/src/pc-switcher/pc-switcher.service /lib/systemd/system/pc-switcher.service
 ```
 
 Enable the service:
 
 ```
-sudo systemctl enable usb-switch.service
+sudo systemctl enable pc-switcher.service
 ```
 
 Similarly, to start, stop, or disable it:
 
 ```
-sudo systemctl start usb-switch.service
-sudo systemctl stop usb-switch.service
-sudo systemctl disable usb-switch.service
+sudo systemctl start pc-switcher.service
+sudo systemctl stop pc-switcher.service
+sudo systemctl disable pc-switcher.service
 ```
 
 ## Debugging
@@ -29,9 +29,9 @@ sudo systemctl disable usb-switch.service
 Run the manual test:
 
 ```
-sudo systemctl stop usb-switch.service
+sudo systemctl stop pc-switcher.service
 
-cd ~/src/usb-switch/
+cd ~/src/pc-switcher/
 python usb_hub_test.py
 ```
 
@@ -42,9 +42,9 @@ This will cycle through the 4 positions and return to the initial position.
 Run the manual test:
 
 ```
-sudo systemctl stop usb-switch.service
+sudo systemctl stop pc-switcher.service
 
-cd ~/src/usb-switch/
+cd ~/src/pc-switcher/
 python panel_button_leds_test.py
 ```
 
@@ -53,8 +53,8 @@ python panel_button_leds_test.py
 Run the manual test:
 
 ```
-sudo systemctl stop usb-switch.service
+sudo systemctl stop pc-switcher.service
 
-cd ~/src/usb-switch/
+cd ~/src/pc-switcher/
 python panel_buttons_test.py
 ```

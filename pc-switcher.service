@@ -3,8 +3,8 @@ Description=Daemon for the USB switch.
 After=multi-user.target
 
 [Service]
-ExecStart=python switch_daemon_main.py --log_dir=/home/lkary/var/log
-WorkingDirectory=/home/lkary/src/usb-switch/
+ExecStart=python main.py --log_dir=/home/lkary/var/log
+WorkingDirectory=/home/lkary/src/pc-switcher/
 StandardOutput=inherit
 StandardError=inherit
 Restart=on-abort

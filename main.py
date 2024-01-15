@@ -1,4 +1,4 @@
-"""Main daemon for ComputerSelector that runs on Raspberry Pi.
+"""Main daemon for pc-switcher that runs on Raspberry Pi.
 
 - Controls what happens when panel buttons are pressed.
 - Sets USB hub to corresponding position.
@@ -28,7 +28,7 @@ FLAGS = flags.FLAGS
 COMPUTER_CONFIGS = pi_header_pinout.COMPUTER_CONFIGS
 
 
-class ComputerSelector:
+class ComputerSwitcher:
     """Controls what happens when panel buttons are pressed."""
 
     def __init__(self):
@@ -99,8 +99,8 @@ def main(argv):
     logging.set_verbosity(logging.INFO)
     logging.get_absl_handler().use_absl_log_file()
     logging.info('Main loop.')
-    controller = ComputerSelector()
-    controller.register_button_callbacks()
+    switcher = ComputerSwitcher()
+    switcher.register_button_callbacks()
     # Signal pause only works on Linux.
     signal.pause()  # pylint: disable=no-member
 
