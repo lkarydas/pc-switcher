@@ -37,8 +37,8 @@ USB_HUB_POSITION_LEDS_GPIO_PINS = [4, 22, 15, 27]
 class ComputerConfig:
     """Data class that represents a computer configuration."""
     computer_name: str
-    usb_position: int
-    hdmi_position: int
+    usb_position: int  # 1, 2, 3, 4.
+    hdmi_position: int  # 1, 2, 3, 4.
 
 
 COMPUTER_CONFIGS = [

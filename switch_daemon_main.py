@@ -27,21 +27,24 @@ FLAGS = flags.FLAGS
 
 COMPUTER_CONFIGS = pi_header_pinout.COMPUTER_CONFIGS
 
+
 class ComputerSelector:
     """Controls what happens when panel buttons are pressed."""
 
     def __init__(self):
         self.usb_hub_controller = usb_hub.USBHubController()
         self.panel_button_leds_controller = PanelButtonLEDsController()
-    #     self._initilize_leds()
+        self._initilize_leds()
 
-    # def _initilize_leds(self):
-    #     usb_position = self.usb_hub_controller.get_current_position()
-    #     corresponding_button_number = 0
-    #     # for config in BUTTON_TO_COMPUTER_MAP.values():
-    #     #     if config.usb_position == 
-            
-
+    def _initilize_leds(self):
+        current_usb_position = self.usb_hub_controller.get_current_position()
+        current_index = 0
+        for i, config in enumerate(COMPUTER_CONFIGS):
+            if config.usb_position == current_usb_position:
+                current_index = i
+                break
+        logging.info('Current USB position: %i', current_usb_position)
+        logging.info('Corresponding index: %i', current_index)
 
     def button_callback(self, button):
         """Callback fn for panel button press."""
