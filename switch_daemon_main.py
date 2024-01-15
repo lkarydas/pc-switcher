@@ -1,4 +1,4 @@
-"""Main daemon that runs on Raspberry Pi.
+"""Main daemon for ComputerSelector that runs on Raspberry Pi.
 
 - Controls what happens when panel buttons are pressed.
 - Sets USB hub to corresponding position.
@@ -7,7 +7,6 @@
 - Controls LED lights on panel buttons.
 """
 
-import dataclasses
 import sys
 import signal
 import time
@@ -26,21 +25,7 @@ import pi_header_pinout
 
 FLAGS = flags.FLAGS
 
-
-@dataclasses.dataclass
-class ComputerConfig:
-    """Data class that represents a computer configuration."""
-    computer_name: str
-    usb_position: int
-    hdmi_position: int
-
-
-_PANEL_BUTTON_MAP = {
-    13: ComputerConfig('Dock', 1, 1),
-    5: ComputerConfig('Lenovo', 2, 2),
-    6: ComputerConfig('MSI', 3, 2),
-    19: ComputerConfig('UM350', 4, 4),
-}
+BUTTON_TO_COMPUTER_MAP = pi_header_pinout.BUTTON_GPIO_PIN_TO_COMPUTER_CONFIG_MAP
 
 class ComputerSelector:
     """Controls what happens when panel buttons are pressed."""
@@ -52,7 +37,7 @@ class ComputerSelector:
     def button_callback(self, button):
         """Callback fn for panel button press."""
         button_pin = button.pin.number
-        panel_button = _PANEL_BUTTON_MAP[button_pin]
+        panel_button = BUTTON_TO_COMPUTER_MAP[button_pin]
         print('')
         logging.info(
             'Button pressed! Pin: %s Switching to %s.',
