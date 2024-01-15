@@ -45,6 +45,14 @@ class ComputerSelector:
                 break
         logging.info('Current USB position: %i', current_usb_position)
         logging.info('Corresponding index: %i', current_index)
+        # Flash all LEDs for show.
+        self.panel_button_leds_controller.turn_on_all_leds()
+        time.sleep(0.2)
+        led_indices_to_turn_off = [i for i in range(4) if i != current_index]
+        logging.info('led_indices_to_turn_off: %s', led_indices_to_turn_off)
+        for i in led_indices_to_turn_off:
+            self.panel_button_leds_controller.turn_off_led(
+                led_indices_to_turn_off)
 
     def button_callback(self, button):
         """Callback fn for panel button press."""
