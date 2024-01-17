@@ -17,8 +17,8 @@ time.sleep(0.5)
 
 for i in range(4):
     print(f'Turning on LED {i + 1}.')
-    controller.turn_on_led(pi_header_pinout.BUTTON_LED_GPIO_PINS[i])
+    controller.turn_on_led(i)
     time.sleep(0.6)
-    controller.turn_off_led(pi_header_pinout.BUTTON_LED_GPIO_PINS[i])
+    controller.turn_off_led(i)
     time.sleep(0.1)
 print('Done.')
