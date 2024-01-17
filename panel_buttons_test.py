@@ -16,10 +16,10 @@ def button_callback(button):
 
 def register_button_callbacks():
     """Register callbacks for panel buttons."""
-    button_1 = gpiozero.Button(pi_header_pinout.BUTTON_1_GPIO_PIN)
-    button_2 = gpiozero.Button(pi_header_pinout.BUTTON_2_GPIO_PIN)
-    button_3 = gpiozero.Button(pi_header_pinout.BUTTON_3_GPIO_PIN)
-    button_4 = gpiozero.Button(pi_header_pinout.BUTTON_4_GPIO_PIN)
+    button_1 = gpiozero.Button(pi_header_pinout.BUTTON_GPIO_PINS[0])
+    button_2 = gpiozero.Button(pi_header_pinout.BUTTON_GPIO_PINS[1])
+    button_3 = gpiozero.Button(pi_header_pinout.BUTTON_GPIO_PINS[2])
+    button_4 = gpiozero.Button(pi_header_pinout.BUTTON_GPIO_PINS[3])
     button_1.when_pressed = button_callback
     button_2.when_pressed = button_callback
     button_3.when_pressed = button_callback
