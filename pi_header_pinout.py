@@ -41,9 +41,10 @@ class ComputerConfig:
     hdmi_position: int  # 1, 2, 3, 4.
 
 
+# The order matters here.
 COMPUTER_CONFIGS = [
+    ComputerConfig('UM350', 4, 4),
+    ComputerConfig('MSI', 3, 2),
     ComputerConfig('Dock', 1, 1),
     ComputerConfig('Lenovo', 2, 2),
-    ComputerConfig('MSI', 3, 2),
-    ComputerConfig('UM350', 4, 4),
 ]
