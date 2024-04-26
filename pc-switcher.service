@@ -1,6 +1,6 @@
 [Unit]
 Description=Daemon for the USB switch.
-After=multi-user.target
+After=network-online.target
 
 [Service]
 ExecStart=python main.py --log_dir=/home/lkary/var/log
