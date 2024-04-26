@@ -19,8 +19,10 @@ from absl import logging
 
 import hdmi_hub
 from panel_button_leds import PanelButtonLEDsController
+from usb.orei_ukm_404_usb_switch import UKM404USBSwitch
 import tcp_client
-import usb_hub
+# import usb_hub
+
 import pi_header_pinout
 
 FLAGS = flags.FLAGS
@@ -32,7 +34,7 @@ class ComputerSwitcher:
     """Controls what happens when panel buttons are pressed."""
 
     def __init__(self):
-        self.usb_hub_controller = usb_hub.USBHubController()
+        self.usb_hub_controller = UKM404USBSwitch()
         self.panel_button_leds_controller = PanelButtonLEDsController()
         self._initilize_leds()
 

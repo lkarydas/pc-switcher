@@ -1,6 +1,6 @@
 """Controls the USB hub."""
 import time
-import orei_ukm_404_usb_switch_lib
+import usb.orei_ukm_404_usb_switch_lib
 
 
 # The position on the OREI USB switch where the USB hub (under desk) plugs in.
@@ -19,11 +19,11 @@ class UKM404USBSwitch:
 
     def get_current_position(self):
         """Returns the current position of the USB switch."""
-        status = orei_ukm_404_usb_switch_lib.get_status()
+        status = usb.orei_ukm_404_usb_switch_lib.get_status()
         return int(status[_DEVICE_BEING_USED - 1])
         
 
     def switch_to(self, position):
         """Switch USB switch to a specific position."""
-        orei_ukm_404_usb_switch_lib.switch_usb_position(
+        usb.orei_ukm_404_usb_switch_lib.switch_usb_position(
             _DEVICE_BEING_USED, position)

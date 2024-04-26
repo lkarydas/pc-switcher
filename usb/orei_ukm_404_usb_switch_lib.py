@@ -9,7 +9,7 @@ _GET_PARAM_ENDPOINT = "/cgi-bin/MUH44TP_getsetparams.cgi"
 
 def switch_usb_position(device: int, host: int):
   """Switch USB device to host.
-  
+
   Devices are numbered 1, 2, 3, 4. Device 0 corresponds to all devices.
   Hosts are numbered 1, 2, 3, 4. Switching to host 0 disconnects the device.
   """
@@ -18,7 +18,7 @@ def switch_usb_position(device: int, host: int):
   cmd = '>SetUSB %02i:%02i' % (device, host)
   payload = '{CMD=%s\r\n' % cmd
   send_request(_SEND_CMD_ENDPOINT, payload)
-  
+
 def get_status():
   response = send_request(_GET_PARAM_ENDPOINT, 'lcc')
   response = response.replace('(', '')
