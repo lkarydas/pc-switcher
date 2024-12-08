@@ -24,6 +24,11 @@ sudo systemctl disable pc-switcher.service
 
 ## Debugging
 
+### TCP Server
+
+Use `tcp_client_main.py` to send echo messages to the server. These messages 
+are noop, but the server acknoledges them in the logs.
+
 ### USB Hub
 
 Run the manual test:

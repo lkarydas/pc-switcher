@@ -22,5 +22,8 @@ class DDCHandler(socketserver.BaseRequestHandler):
         if message == '':
             logging.debug('Heartbeat from Uptime Kuma.')
             return
+        if message == 'echo':
+            logging.info('Echo received.')
+            return
         logging.info('%s wrote: %s', self.client_address[0], message)
         samsung_ddc.switch_monitor_input(message)
