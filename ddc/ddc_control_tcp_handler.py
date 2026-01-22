@@ -3,7 +3,7 @@
 import socketserver
 
 from absl import logging
-from ddc import samsung_ddc
+from ddc import samsung_monitor_control
 
 
 class DDCHandler(socketserver.BaseRequestHandler):
@@ -26,4 +26,4 @@ class DDCHandler(socketserver.BaseRequestHandler):
             logging.info('Echo received.')
             return
         logging.info('%s wrote: %s', self.client_address[0], message)
-        samsung_ddc.switch_monitor_input(message)
+        samsung_monitor_control.set_monitor_input_source(message)

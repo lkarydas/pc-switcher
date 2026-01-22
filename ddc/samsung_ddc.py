@@ -1,4 +1,9 @@
-""" Sends DDC commands to Samsung G9 using ddcutil."""
+""" Sends DDC commands to Samsung G9 using ddcutil.
+
+DEPRECATED: This was calling an executable, but now the monitorcontrol Python
+library supports Windows. See samsung_monitor_control.py.
+
+"""
 
 import subprocess
 import time
